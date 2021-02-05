@@ -4,6 +4,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace MovieLibrary
 {
@@ -15,6 +16,46 @@ namespace MovieLibrary
             do
             {
                 char option = DisplayMainMenu();
+
+                // Switch statement is equivalent to a series of if-else-if with equality checks
+                //      switch-statement :: =switch (E) { case-statements* [optional default-statement] };
+                //  case-statment ::= case E : S ;
+                // default-statement ::= default : S ;
+
+                // case label rules:
+                //  -must be constant values : literals or simple expressions of constant values
+                //  -must be unique
+                //  -can be a string
+                //  -only allowed a single default
+                // Fallthrough behavior if no break statement
+                //  -not allowed, must use a break statement
+                //  -Allowed if case lable has no statement (including semicolon)
+
+                // Styling rules
+                //  - Single statement ( excluding break) no blcok statement needed
+                //  -Multipe statements (excluding break) should use blcok statement to avoid compiler errors.
+
+                switch (10)
+                {
+                    case 10: S1; S2; S3; break;
+                    case 12:
+                    {
+                        int x; x = 10;
+                        break;
+                    };
+                    case 13: SByte; break;
+                }
+
+
+                switch (option)
+                {
+                    case 'A': AddMovie(); break;
+                    case 'V': ViewMovie(); break;
+                    case 'Q': done = true; break;
+
+                    default: DisplayError("Unknown command"); break;
+                }
+
 
                 if (option == 'A')
                     AddMovie();
@@ -83,6 +124,65 @@ namespace MovieLibrary
         static string rating;
         static bool isClassic;
 
+
+        string stringliteral = "Hello" + "World";
+
+
+        void DemoString ()
+        {
+            // Conversion t string
+            int hours = 10;
+            string hourString = hours.ToString(); // *
+            // or
+            hourString = 10.ToString();
+
+        }
+
+        private static object emptyString1;
+        private static object defautString1;
+        private static string emptyString2;
+        // Verbatim syntax
+        string filePath = "C:\\Temp\\test.txt";
+        string secondFilePath = @"C:\Temp\test.txt"; // Verbatim syntax
+
+        // Empty string
+        // null and empty string are not the same
+        string emptyString = "";  // this is not the default value of a string.
+        string emptyString3 = String.Empty;
+        string defautString = null; 
+        bool areEqual = emptyString1 == defautString1; // false
+
+        // checking for empty string
+        bool isEmptyPreferred = String.IsNullOrEmpty(emptyString2);
+
+        // String concatenation
+        string first = "Hello", second = "World";
+
+        string concatOp = first1 + " " + second1;  // 
+        string concatFunction = String.Concat(first2, " ", second2);
+        private static string second1;
+        private static string first1;
+        private static IEnumerable<string> first2;
+        private static object second2;
+        private static string immutableString1 = String.Empty;
+
+
+        string joinFunction = String.Join(' ', first2, second2);
+
+        // Strings are immutable!!!! there values cannot change.
+        string immutableString = "Hello";
+        //immutableString1 += " "; // now we have 2 strings,  "Hello" and "Hello "
+
+
+        // String formatting
+        //      the result of 4 + 5 = 9
+        static int x = 4;
+        static int y = 5;
+        static int total = x + y;
+
+
+
+
         static void ViewMovie()
         {
             Console.WriteLine(title);
@@ -114,6 +214,7 @@ namespace MovieLibrary
         }
 
 
+
         // Read and integer value
         static int ReadInt32( int minimumValue )
         {
@@ -136,7 +237,11 @@ namespace MovieLibrary
             do
             {
                 //TODO: Keep prompting until valid value
-                string input = Console.ReadLine();
+                //string input = Console.ReadLine();
+
+                // Type inferencing - compiler infers the based upon assignment
+                var input = Console.ReadLine(); // var is only valid in local variables. 
+                var value = 43.5 + 45;
 
                 //TODO: Fix so it doesn't crash if not integer
                 // Convert string to int

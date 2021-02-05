@@ -16,7 +16,7 @@ namespace Budget
 
         static void Main()
         {
-            DisplayProgramInformation();
+            DisplayClassInformation();
             DisplayWelcomeMessage();
 
             AccountName name = new AccountName();
@@ -30,15 +30,15 @@ namespace Budget
             string accountNumber = Console.ReadLine();
 
             Console.WriteLine("You entered \"" + accountNumber + "\" for your account number.\n");
+            Console.WriteLine("You entered \" {0} \" for your account number.", accountNumber);
 
             StartingBalance balance = new StartingBalance();
             Console.Write("Enter you starting balance: ");
             decimal startingBalance = Decimal.Parse(Console.ReadLine());
 
             Console.WriteLine("Your entered \"" + startingBalance + "\" for your starting balance.\n");
-
         }
-        public static void DisplayProgramInformation()
+        public static void DisplayClassInformation()
         {
             Console.WriteLine("Budget");
             Console.WriteLine("ITSE 1430");
